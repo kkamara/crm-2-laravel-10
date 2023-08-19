@@ -15,4 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/dashboard', function () {
     return view('admin/dashboard');
-});
+})->name('adminHome');
+Route::get('/admin/login', function () {
+    return view('admin/auth/login');
+})->name('adminLogin');
