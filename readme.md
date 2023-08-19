@@ -114,3 +114,11 @@ Admin views theme template for this crm-2-laravel-10 app: [Modernize – Free Bo
 [See amazon scraper.](https://github.com/kkamara/amazon-scraper)
 
 [See python amazon scraper 2.](https://github.com/kkamara/selenium-py)
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[BSD](https://opensource.org/licenses/BSD-3-Clause)
