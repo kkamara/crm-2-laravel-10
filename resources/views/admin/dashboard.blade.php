@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Dashboard | {{ config('app.name') }}</title>
-    <link rel='icon' type='image/ico' href="{{ asset('favicon.ico') }}" />
+    
+    <link 
+        rel="shortcut icon" 
+        type="image/png" 
+        href="{{ asset('admin/images/logos/favicon.png') }}" 
+    />
     <link rel="stylesheet" href="{{ asset('admin/css/styles.min.css') }}" />
 </head>
 <body>
