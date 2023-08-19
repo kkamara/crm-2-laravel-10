@@ -99,6 +99,8 @@ php artisan test --testsuite=Feature
 
 ## Misc
 
+Admin views theme template for this crm-2-laravel-10 app: [Modernize – Free Bootstrap 5 HTML5 Admin Dashboard Template](https://themewagon.com/themes/modernize/)
+
 [See Laravel 10 movies app.](https://github.com/kkamara/movies)
 
 [See laravel makefile](https://github.com/kkamara/laravel-makefile)
@@ -112,13 +114,3 @@ php artisan test --testsuite=Feature
 [See amazon scraper.](https://github.com/kkamara/amazon-scraper)
 
 [See python amazon scraper 2.](https://github.com/kkamara/selenium-py)
-
-[See wordpress.](https://github.com/kkamara/wordpress)
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[BSD](https://opensource.org/licenses/BSD-3-Clause)
