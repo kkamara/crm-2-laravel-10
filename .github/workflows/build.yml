@@ -77,3 +77,8 @@ jobs:
         run: curl localhost:8000 &
       - name: Run Feature Tests
         run: php artisan test ${{ env.PHPUNIT_FLAGS }}
+      - name: Upload Logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: storage/logs
