@@ -99,7 +99,7 @@ php artisan test --testsuite=Feature
 
 ## Misc
 
-Admin views theme template for this crm-2-laravel-10 app: [Modernize – Free Bootstrap 5 HTML5 Admin Dashboard Template](https://themewagon.com/themes/modernize/)
+Admin views theme for this crm-2-laravel-10 app: [Modernize – Free Bootstrap 5 HTML5 Admin Dashboard Template](https://themewagon.com/themes/modernize/).
 
 [See Laravel 10 movies app.](https://github.com/kkamara/movies)
 
