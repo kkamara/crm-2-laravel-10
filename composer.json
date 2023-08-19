@@ -5,7 +5,10 @@
     "keywords": [
         "web",
         "web-app",
-        "gdpr"
+        "gdpr",
+        "system",
+        "management",
+        "crm"
     ],
     "license": "MIT",
     "require": {
