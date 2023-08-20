@@ -30,6 +30,8 @@ Route::post(
     'admin/login', 
     [LoginController::class, 'create']
 )->name('adminLoginCreate');
+Route::get('/admin/logout', [LoginController::class, 'logout'])
+    ->name('adminLogout');
 Route::get(
     'admin/resetpassword', 
     [

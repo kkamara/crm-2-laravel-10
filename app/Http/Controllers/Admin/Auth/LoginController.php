@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth')
+            ->only(['logout']);
+    }
+
     /**
      * @param \Illuminate\Http\Request $request
      */
@@ -46,6 +51,14 @@ class LoginController extends Controller
                 ->withInput()
                 ->withErrors(['username' => 'Invalid email & password combination']);
         }
+        return redirect()->route('adminHome');
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     */
+    public function logout(Request $request) {
+        Auth::logout();
         return redirect()->route('adminHome');
     }
 }
