@@ -2,6 +2,12 @@
 
 <img src="https://github.com/kkamara/useful/raw/main/movies.png" alt="movies.png" width=""/>
 
+<img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10.png" alt="crm-2-laravel-10.png" width=""/>
+
+<img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10-2.png" alt="crm-2-laravel-10.-2png" width=""/>
+
+<img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10-3.png" alt="crm-2-laravel-10.-3png" width=""/>
+
 # crm-2-laravel-10 [![API](https://github.com/kkamara/crm-2-laravel-10/actions/workflows/build.yml/badge.svg)](https://github.com/kkamara/crm-2-laravel-10/actions/workflows/build.yml)
 
 (19-Aug-2023) Built with Laravel 10.
