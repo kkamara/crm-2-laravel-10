@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 require_once __DIR__.'/admin.php';
 
 Route::get('/',function() {
-    return ['message'=>'success'];
+    return redirect()->route('adminHome');
 })->name('home');
