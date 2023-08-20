@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ClientController;
 
 Route::get('/admin',function() {
     return ['message'=>'success'];
@@ -39,3 +40,10 @@ Route::get(
         'index'
     ]
 )->name('resetAdminPassword');
+Route::get(
+    'admin/clients',
+    [
+        ClientController::class,
+        'index'
+    ]
+)->name('adminClients');
