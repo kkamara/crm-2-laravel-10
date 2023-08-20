@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Admin\Auth\ResetPasswordController;
-use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,35 +12,8 @@ use App\Http\Controllers\Admin\DashboardController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/admin',function() {
+require_once __DIR__.'/admin.php';
+
+Route::get('/',function() {
     return ['message'=>'success'];
-});
-Route::get(
-    '/admin/dashboard', 
-    [
-        DashboardController::class,
-        'index'
-    ]
-)->name('adminHome');
-Route::get(
-    'admin', 
-    [
-        DashboardController::class, 
-        'redirectAdminPath'
-    ]
-);
-Route::get(
-    '/admin/login', 
-    [LoginController::class, 'index']
-)->name('adminLogin');
-Route::get(
-    'admin/resetpassword', 
-    [
-        ResetPasswordController::class,
-        'index'
-    ]
-)->name('resetAdminPassword');
-Route::post(
-    'admin/login', 
-    [LoginController::class, 'create']
-)->name('adminLoginCreate');
+})->name('home');
