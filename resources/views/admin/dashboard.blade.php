@@ -9,9 +9,9 @@
     <link 
         rel="shortcut icon" 
         type="image/png" 
-        href="{{ asset('admin/images/logos/favicon.png') }}" 
+        href="{{ asset('adminAssets/images/logos/favicon.png') }}" 
     />
-    <link rel="stylesheet" href="{{ asset('admin/css/styles.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('adminAssets/css/styles.min.css') }}" />
 </head>
 <body>
     <!--  Body Wrapper -->
@@ -23,7 +23,7 @@
         <div>
           <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="./index.html" class="text-nowrap logo-img">
-              <img src="{{ asset('admin/images/logos/dark-logo.svg') }}" width="180" alt="" />
+              <img src="{{ asset('adminAssets/images/logos/dark-logo.svg') }}" width="180" alt="" />
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
               <i class="ti ti-x fs-8"></i>
@@ -136,7 +136,7 @@
                   <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
                 </div>
                 <div class="unlimited-access-img">
-                  <img src="{{ asset('admin/images/backgrounds/rocket.png') }}" alt="" class="img-fluid">
+                  <img src="{{ asset('adminAssets/images/backgrounds/rocket.png') }}" alt="" class="img-fluid">
                 </div>
               </div>
             </div>
@@ -170,7 +170,7 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <img src="{{ asset('admin/images/profile/user-1.jpg') }}" alt="" width="35" height="35" class="rounded-circle">
+                    <img src="{{ asset('adminAssets/images/profile/user-1.jpg') }}" alt="" width="35" height="35" class="rounded-circle">
                   </a>
                   <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                     <div class="message-body">
@@ -222,12 +222,12 @@
         </div>
       </div>
     </div>
-    <script src="{{ asset('admin/libs/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('admin/js/sidebarmenu.js') }}"></script>
-    <script src="{{ asset('admin/js/app.min.js') }}"></script>
-    <script src="{{ asset('admin/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('admin/libs/simplebar/dist/simplebar.js') }}"></script>
-    <script src="{{ asset('admin/js/dashboard.js') }}"></script>
+    <script src="{{ asset('adminAssets/libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('adminAssets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('adminAssets/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('adminAssets/js/app.min.js') }}"></script>
+    <script src="{{ asset('adminAssets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('adminAssets/libs/simplebar/dist/simplebar.js') }}"></script>
+    <script src="{{ asset('adminAssets/js/dashboard.js') }}"></script>
   </body>
 </html>

@@ -8,9 +8,9 @@
   <link 
     rel="shortcut icon" 
     type="image/png" 
-    href="{{ asset('admin/images/logos/favicon.png') }}" 
+    href="{{ asset('adminAssets/images/logos/favicon.png') }}" 
   />
-  <link rel="stylesheet" href="{{ asset('admin/css/styles.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('adminAssets/css/styles.min.css') }}" />
 </head>
 
 <body>
@@ -25,7 +25,7 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="{{ asset('admin/images/logos/dark-logo.svg') }}" width="180" alt="">
+                  <img src="{{ asset('adminAssets/images/logos/dark-logo.svg') }}" width="180" alt="">
                 </a>
                 <p class="text-center">App</p>
                 <form>
@@ -59,8 +59,8 @@
       </div>
     </div>
   </div>
-  <script src="{{ asset('admin/libs/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ asset('admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('adminAssets/libs/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('adminAssets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

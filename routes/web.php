@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/admin',function() {
+    return ['message'=>'success'];
+});
 Route::get('/admin/dashboard', function () {
     return view('admin/dashboard');
 })->name('adminHome');
+Route::redirect('admin', 'admin/login');
 Route::get('/admin/login', function () {
     return view('admin/auth/login');
 })->name('adminLogin');
