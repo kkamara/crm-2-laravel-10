@@ -27,11 +27,11 @@
                 <a href="{{ route('adminLogin') }}" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="{{ asset('adminAssets/images/logos/dark-logo.svg') }}" width="180" alt="">
                 </a>
-                <p class="text-center">App</p>
+                <p class="text-center">{{ __('App') }}</p>
                 <form method='POST' action="{{ route('adminLoginCreate') }}">
                   @csrf
                   <div class="mb-3">
-                    <label for="inputUsername" class="form-label">Username</label>
+                    <label for="inputUsername" class="form-label">{{ __('Username') }}</label>
                     <input 
                         type="email" 
                         name="username" 
@@ -50,7 +50,7 @@
                         for="inputPassword" 
                         class="form-label"
                     >
-                        Password
+                        {{ __('Password') }}
                     </label>
                     <input 
                         type="password"
