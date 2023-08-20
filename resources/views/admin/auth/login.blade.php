@@ -74,15 +74,15 @@
                         name="rememberToken"
                       />
                       <label class="form-check-label text-dark" for="rememberToken">
-                        Remember this Device
+                        {{__('Remember this Device')}}
                       </label>
                     </div>
-                    <a class="text-primary fw-bold" href="{{ route('resetAdminPassword') }}">Forgot Password ?</a>
+                    <a class="text-primary fw-bold" href="{{ route('resetAdminPassword') }}">{{__('Forgot Password ?')}}</a>
                   </div>
                   <input
                     class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2"
                     type='submit'
-                    value='Sign In'
+                    value="{{ __('Sign In') }}"
                   />
                   <div class="d-flex align-items-center justify-content-center">
                     {{-- <p class="fs-4 mb-0 fw-bold">New to Modernize?</p> --}}
