@@ -31,9 +31,16 @@
 ## Tinker
 
 ```bash
-php artisan tinker
-> $u = new \App\Models\User;
-= App\Models\User {#6216}
+MacBook-Air:crm-2-laravel-10 kel$ php  artisan tinker
+Psy Shell v0.11.20 (PHP 8.2.4 — cli) by Justin Hileman
+> $client = \App\Models\Admin\Client::factory()->create();
+= App\Models\Admin\Client {#7263
+    users_id: 1,
+    name: "Dooley, Rosenbaum and Zemlak",
+    updated_at: "2023-08-20 17:57:12",
+    created_at: "2023-08-20 17:57:12",
+    id: 1,
+  }
 ```
 
 ## Installation
