@@ -38,6 +38,7 @@
                         class="form-control @if(isset($errors) && $errors->count() && strlen($errors->first('username'))) is-invalid @endif" 
                         id="inputUsername" 
                         aria-describedby="emailHelp"
+                        value="{{ old('username') }}"
                     />
                     @if(isset($errors) && $errors->count() && strlen($errors->first('username')))
                         <div id="validationUsernameFeedback">
@@ -57,6 +58,7 @@
                         name="password"
                         class="form-control @if(isset($errors) && $errors->count() && strlen($errors->first('password'))) is-invalid @endif" 
                         id="inputPassword"
+                        value="{{ old('password') }}"
                     />
                     @if(isset($errors) && $errors->count() && strlen($errors->first('password')))
                         <div id="validationPasswordFeedback">
@@ -69,7 +71,7 @@
                       <input 
                         class="form-check-input primary" 
                         type="checkbox" 
-                        value=""
+                        value="true"
                         id="rememberToken"
                         name="rememberToken"
                       />
