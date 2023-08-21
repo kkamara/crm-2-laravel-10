@@ -11,11 +11,12 @@ use Soved\Laravel\Gdpr\Portable;
 use Soved\Laravel\Gdpr\Contracts\Portable as PortableContract;
 use Soved\Laravel\Gdpr\EncryptsAttributes;
 use Soved\Laravel\Gdpr\Retentionable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements PortableContract
 {
     use HasApiTokens, HasFactory, Notifiable, Portable; 
-    use EncryptsAttributes, Retentionable;
+    use EncryptsAttributes, Retentionable, HasRoles;
 
     /**
      * The attributes that should be visible in the downloadable data.
