@@ -24,15 +24,40 @@
                     </h3>
                 </div>
                 <div class="card-body">
+                  <form action="" method='GET'>
+                    @csrf
+                    <div class="form-group">
+                      <label for="query">Search</label>
+                      <input 
+                        type="text"
+                        class='form-control'
+                        name='query'
+                        value="{{ old('query') }}"
+                        placeholder='Search your clients data...'
+                      />
+                    </div>
+                    <br />
+                    <input 
+                      type="submit"
+                      class='btn btn-success'
+                      value='Search'
+                    />
+                  </form>
+                  <br />
                   <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                    <p>Cillum reprehenderit non ea reprehenderit duis et do elit. Sunt fugiat eu fugiat id Lorem duis esse enim reprehenderit irure. Quis sint sint incididunt magna.</p>
+                    @forelse($clients as $client)
+                    <a href='javascript:;'>{{ $client->name }}</a>
                     <br />
-                    <p>Officia est irure cillum ex cupidatat velit ullamco elit reprehenderit et quis consequat consectetur. In proident pariatur magna sint elit anim mollit in velit. Sint irure aliquip ad sunt ad adipisicing non occaecat dolore.</p>
-                    <br />
-                    <p>Magna nisi minim deserunt ullamco est. Nostrud ullamco mollit ad labore adipisicing consectetur cupidatat. Nisi enim consectetur veniam adipisicing dolor ullamco ullamco irure nulla tempor ex. Commodo do culpa culpa elit reprehenderit tempor Lorem reprehenderit officia officia veniam sit Lorem ex. Ipsum commodo laboris sunt tempor cillum commodo voluptate. Ullamco id pariatur tempor Lorem aliquip. Dolor ad consectetur voluptate ea velit consequat laboris do excepteur quis Lorem.</p>
-                    <br />
-                    <p>Dolore proident excepteur cupidatat quis aliqua minim reprehenderit esse officia ea proident. Dolor amet mollit cupidatat aliquip minim officia incididunt eu proident elit ut eiusmod aute. Nisi veniam eiusmod officia aliqua fugiat elit voluptate adipisicing est ea in reprehenderit laboris. Non exercitation eu consequat in ex reprehenderit est et eu id.</p>
+                    @empty
+                      <p>There are no clients to show right now.</p>
+                      <br />
+                    @endforelse
                   </div>
+                </div>
+                <div class="card-footer">
+                  @if(count($clients))
+                    {{ $clients->links() }}
+                  @endif
                 </div>
               </div>
             </div>

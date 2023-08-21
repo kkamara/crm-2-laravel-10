@@ -7,7 +7,7 @@
       </li>
       <li class="sidebar-item">
         <a 
-            class="@if(Route::getCurrentRoute()->uri === 'admin/dashboard') sidebar-link @endif" 
+            class="@if(str_contains(Route::getCurrentRoute()->uri, 'admin/dashboard')) sidebar-link @endif" 
             href="{{ route('adminHome') }}" 
             aria-expanded="false"
         >
@@ -20,7 +20,7 @@
       @can('view clients')
       <li class="sidebar-item">
         <a 
-            class="@if(Route::getCurrentRoute()->uri === 'admin/clients') sidebar-link @endif" 
+            class="@if(str_contains(Route::getCurrentRoute()->uri, 'admin/clients')) sidebar-link @endif" 
             href="{{ route('adminClients') }}" 
             aria-expanded="false"
         >
@@ -34,7 +34,7 @@
       @can('view logs')
       <li class="sidebar-item">
         <a 
-            class="@if(Route::getCurrentRoute()->uri === 'admin/logs') sidebar-link @endif" 
+            class="@if(str_contains(Route::getCurrentRoute()->uri, 'admin/logs')) sidebar-link @endif" 
             href="" 
             aria-expanded="false"
         >
@@ -48,7 +48,7 @@
       @can('view users')
       <li class="sidebar-item">
         <a 
-            class="@if(Route::getCurrentRoute()->uri === 'admin/users') sidebar-link @endif" 
+            class="@if(str_contains(Route::getCurrentRoute()->uri, 'admin/users')) sidebar-link @endif" 
             href="" 
             aria-expanded="false"
         >
