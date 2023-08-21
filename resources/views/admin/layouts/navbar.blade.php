@@ -17,6 +17,7 @@
           <span class="hide-menu">Dashboard</span>
         </a>
       </li>
+      @can('view clients')
       <li class="sidebar-item">
         <a 
             class="@if(Route::getCurrentRoute()->uri === 'admin/clients') sidebar-link @endif" 
@@ -29,5 +30,34 @@
           <span class="hide-menu">View Clients</span>
         </a>
       </li>
+      @endcan
+      @can('view logs')
+      <li class="sidebar-item">
+        <a 
+            class="@if(Route::getCurrentRoute()->uri === 'admin/logs') sidebar-link @endif" 
+            href="" 
+            aria-expanded="false"
+        >
+          <span>
+            <i class="ti ti-layout-dashboard"></i>
+          </span>
+          <span class="hide-menu">View Logs</span>
+        </a>
+      </li>
+      @endcan
+      @can('view users')
+      <li class="sidebar-item">
+        <a 
+            class="@if(Route::getCurrentRoute()->uri === 'admin/users') sidebar-link @endif" 
+            href="" 
+            aria-expanded="false"
+        >
+          <span>
+            <i class="ti ti-layout-dashboard"></i>
+          </span>
+          <span class="hide-menu">View Users</span>
+        </a>
+      </li>
+      @endcan
     </ul>
   </nav>
