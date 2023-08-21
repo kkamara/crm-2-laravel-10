@@ -47,3 +47,10 @@ Route::get(
         'index'
     ]
 )->name('adminClients');
+Route::get(
+    'admin/clients/search',
+    [
+        ClientController::class,
+        'search'
+    ]
+)->name('clientsSearch');

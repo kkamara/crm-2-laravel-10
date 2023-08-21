@@ -17,7 +17,8 @@
                                             Home
                                         </a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Clients</li>
+                                    <li class="breadcrumb-item">Clients</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Search</li>
                                 </ol>
                             </nav>
                         </div>

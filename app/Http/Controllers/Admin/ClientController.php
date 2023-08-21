@@ -22,6 +22,27 @@ class ClientController extends Controller
     }
 
     /**
+     * Search a listing of the resource.
+     * @param \Illuminate\Http\Request $request
+     */
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        
+        if (null !== $query) {
+            $query = htmlspecialchars($query);
+            $clients = Client::where('name', 'like', "%$query%")
+                ->orWhere('created_at', 'like', "%$query%")
+                ->orWhere('updated_at', 'like', "%$query%")
+                ->paginate(10);
+        } else {
+            $clients = Client::paginate(10);
+        }
+        $request->flash();
+        return view('admin/clients/search', compact('clients'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
