@@ -31,16 +31,15 @@ class ClientController extends Controller
         if (!auth()->user()->hasPermissionTo('view clients')) {
             return abort(Response::HTTP_UNAUTHORIZED, 'Unauthorized.');
         }
-        $query = $request->get('query');
         
+        $clients = Client::paginate(10);
+        $query = $request->get('query');
         if (null !== $query) {
             $query = htmlspecialchars($query);
             $clients = Client::where('name', 'like', "%$query%")
                 ->orWhere('created_at', 'like', "%$query%")
                 ->orWhere('updated_at', 'like', "%$query%")
                 ->paginate(10);
-        } else {
-            $clients = Client::paginate(10);
         }
         $request->flash();
         return view('admin/clients/search', compact('clients'));
