@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Admin\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ClientController extends Controller
 {
@@ -27,6 +28,9 @@ class ClientController extends Controller
      */
     public function search(Request $request)
     {
+        if (!auth()->user()->hasPermissionTo('view clients')) {
+            return abort(Response::HTTP_UNAUTHORIZED, 'Unauthorized.');
+        }
         $query = $request->get('query');
         
         if (null !== $query) {
