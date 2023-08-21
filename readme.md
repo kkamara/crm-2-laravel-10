@@ -4,9 +4,11 @@
 
 <img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10.png" alt="crm-2-laravel-10.png" width=""/>
 
-<img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10-2.png" alt="crm-2-laravel-10.-2png" width=""/>
+<img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10-2.png" alt="crm-2-laravel-10-2.png" width=""/>
 
-<img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10-3.png" alt="crm-2-laravel-10.-3png" width=""/>
+<img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10-3.png" alt="crm-2-laravel-10-3.png" width=""/>
+
+<img src="https://github.com/kkamara/useful/raw/main/crm-2-laravel-10-4.png" alt="crm-2-laravel-10-4.png" width=""/>
 
 # crm-2-laravel-10 [![API](https://github.com/kkamara/crm-2-laravel-10/actions/workflows/build.yml/badge.svg)](https://github.com/kkamara/crm-2-laravel-10/actions/workflows/build.yml)
 
