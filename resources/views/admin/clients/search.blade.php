@@ -55,11 +55,13 @@
                     @endforelse
                   </div>
                 </div>
+                @if($clients->count())
                 <div class="card-footer">
                   @if(count($clients))
                     {{ $clients->links() }}
                   @endif
                 </div>
+                @endif
               </div>
             </div>
           </div>
