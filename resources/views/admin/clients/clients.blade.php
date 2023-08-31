@@ -44,9 +44,23 @@
                     />
                   </form>
                   <br />
-                  <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="">
+                    <div>
+                      Client Name
+                      <span>| Created At</span>
+                      <span>| Updated At</span>
+                    </div>
                     @forelse($clients as $client)
-                    <a href='javascript:;'>{{ $client->name }}</a>
+                    <button 
+                      type="button" 
+                      class="btn btn-default" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#clientsModal{{ $client->id }}"
+                    >
+                      {{ $client->name }}
+                      <span>| {{ $client->created_at }}</span>
+                      <span>| {{ $client->updated_at }}</span>
+                    </button>
                     <br />
                     @empty
                       <p>There are no clients to show right now.</p>
@@ -64,4 +78,28 @@
               </div>
             </div>
           </div>
+          @if($clients->count())
+            @foreach($clients as $client)
+            <!-- Modal -->
+            <div class="modal fade" id="clientsModal{{ $client->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $client->name }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>User created: {{ $client->user->fullName }}</p>
+                    <p>Created At: {{ $client->user->created_at }}</p>
+                    <p>Updated At: {{ $client->user->updated_at }}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          @endif
 @stop

@@ -75,4 +75,9 @@ class User extends Authenticatable implements PortableContract
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getFullNameAttribute() {
+        return $this->attributes['first_name'] .
+            ' ' . $this->attributes['last_name'];
+    }
 }

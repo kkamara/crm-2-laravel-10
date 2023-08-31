@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\Admin\Client;
 
 class DatabaseSeeder extends Seeder
 {
@@ -43,5 +44,7 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->count(1)
             ->create(compact('email'));
         $user[0]->assignRole('all access');
+
+        Client::factory()->count(30)->create();
     }
 }
