@@ -61,6 +61,16 @@
                       <span>| {{ $client->created_at }}</span>
                       <span>| {{ $client->updated_at }}</span>
                     </button>
+                    @can("view clients")
+                    <button class="btn btn-primary btn-sm">View</button>
+                    @endcan
+                    @can("edit clients")
+                    <button class="btn btn-warning btn-sm">Edit</button>
+                    @endcan
+                    @can("delete clients")
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                    @endcan
+                    <hr />
                     <br />
                     @empty
                       <p>There are no clients to show right now.</p>
@@ -95,7 +105,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
                   </div>
                 </div>
               </div>
