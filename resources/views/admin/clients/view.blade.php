@@ -67,7 +67,7 @@
                     <a href="{{ route("editClient", $client->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     @endcan
                     @can("delete clients")
-                    <a href="javascript:;" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{ route("deleteClient", $client->id) }}" class="btn btn-danger btn-sm">Delete</a>
                     @endcan
                   </div>
                 </div>

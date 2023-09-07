@@ -75,3 +75,17 @@ Route::post(
         'update'
     ]
 )->name('updateClient');
+Route::get(
+    'admin/clients/{id}/delete',
+    [
+        ClientController::class,
+        'delete'
+    ]
+)->name('deleteClient');
+Route::delete(
+    'admin/clients/{id}/delete',
+    [
+        ClientController::class,
+        'destroy'
+    ]
+)->name('destroyClient');

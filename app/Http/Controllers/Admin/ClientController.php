@@ -93,4 +93,41 @@ class ClientController extends Controller
         return redirect()->route("adminClients")
             ->with(["success" => "Client successfully updated."]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function delete(int $id, Request $request)
+    {
+        $client = Client::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("delete clients")) {
+            Log::info("Unauthorized ClientController::delete attempt");
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        if (null === $client) {
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        return view("admin.clients.delete", compact("client"));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function destroy(int $id, Request $request)
+    {
+        $client = Client::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("delete clients")) {
+            Log::info("Unauthorized ClientController::destroy attempt");
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        if (null === $client) {
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        if ($request->get("delete") === "yes") {
+            $client->delete();
+            return redirect()->route("adminClients")
+                ->with(["success" => "Client {$client->name} successfully deleted."]);
+        }
+        return redirect()->route("adminClients");
+    }
 }
