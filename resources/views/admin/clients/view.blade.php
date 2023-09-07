@@ -31,28 +31,35 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                  <div class="">
-                    <div>
-                      <p><strong>Client Name:</strong></p>
-                      <p>{{ $client->name }}</p>
-                    </div>
-                    <br />
-                    <div>
-                      <p><strong>Created At:</strong></p>
-                      <p>{{ $client->created_at }}</p>
-                    </div>
-                    <br />
-                    <div>
-                      <p><strong>Updated At:</strong></p>
-                      <p>{{ $client->updated_at }}</p>
-                    </div>
-                    <br />
-                    <div>
-                      <p><strong>User created by:</strong></p>
-                      <p>{{ $client->user->fullName }}</p>
-                    </div>
-                    <br />
-                    </div>
+                  <div>
+                    <p><strong>Client Name:</strong></p>
+                    <p>{{ $client->name }}</p>
+                  </div>
+                  <br />
+                  <div>
+                    <p><strong>Created At:</strong></p>
+                    <p>{{ $client->created_at }}</p>
+                  </div>
+                  <br />
+                  <div>
+                    <p><strong>Updated At:</strong></p>
+                    <p>{{ $client->updated_at }}</p>
+                  </div>
+                  <br />
+                  <div>
+                    <p><strong>User created by:</strong></p>
+                    <p>{{ $client->user->fullName }}</p>
+                  </div>
+                  <br />
+                </div>
+                <div class="card-footer">
+                  <div class="float-end">
+                    @can("edit clients")
+                    <a href="javascript:;" class="btn btn-warning btn-sm">Edit</a>
+                    @endcan
+                    @can("delete clients")
+                    <a href="javascript:;" class="btn btn-danger btn-sm">Delete</a>
+                    @endcan
                   </div>
                 </div>
               </div>
