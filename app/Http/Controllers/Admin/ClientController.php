@@ -43,7 +43,7 @@ class ClientController extends Controller
                 ->paginate(10);
         }
         $request->flash();
-        return view('admin/clients/search', compact('clients'));
+        return view('admin/clients/clients', compact('clients'));
     }
 
     /**

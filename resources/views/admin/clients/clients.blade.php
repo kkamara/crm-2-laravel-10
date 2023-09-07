@@ -11,14 +11,28 @@
                         Clients
                         <div class="float-end">
                             <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="{{ route('adminHome') }}">
-                                            Home
-                                        </a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Clients</li>
-                                </ol>
+                              <ol class="breadcrumb">
+                                @if(request()->path() === "admin/clients")
+                                <li class="breadcrumb-item">
+                                    <a href="{{ route('adminHome') }}">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Clients</li>
+                                @elseif(request()->path() === "admin/clients/search")
+                                <li class="breadcrumb-item">
+                                    <a href="{{ route('adminHome') }}">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                  <a href="{{ route('adminClients') }}">
+                                      Clients
+                                  </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Search</li>
+                                @endif
+                              </ol>
                             </nav>
                         </div>
                     </h3>
