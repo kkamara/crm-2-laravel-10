@@ -6,6 +6,7 @@ use App\Models\Admin\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class ClientController extends Controller
 {
@@ -48,48 +49,13 @@ class ClientController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function view(int $id, Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Client $client)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Client $client)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Client $client)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Client $client)
-    {
-        //
+        $client = Client::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("view clients")) {
+            Log::info("Unauthorized ClientController::view attempt");
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        return view("admin.clients.view", compact("client"));
     }
 }

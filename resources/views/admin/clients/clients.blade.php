@@ -62,7 +62,7 @@
                       <span>| {{ $client->updated_at }}</span>
                     </button>
                     @can("view clients")
-                    <a href="javascript:;" class="btn btn-primary btn-sm">View</a>
+                    <a href="{{ route("client", $client->id) }}" class="btn btn-primary btn-sm">View</a>
                     @endcan
                     @can("edit clients")
                     <a href="javascript:;" class="btn btn-warning btn-sm">Edit</a>

@@ -54,3 +54,10 @@ Route::get(
         'search'
     ]
 )->name('clientsSearch');
+Route::get(
+    'admin/clients/{id}',
+    [
+        ClientController::class,
+        'view'
+    ]
+)->name('client');
