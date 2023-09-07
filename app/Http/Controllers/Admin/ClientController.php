@@ -58,4 +58,39 @@ class ClientController extends Controller
         }
         return view("admin.clients.view", compact("client"));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function edit(int $id, Request $request)
+    {
+        $client = Client::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("edit clients")) {
+            Log::info("Unauthorized ClientController::view attempt");
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        if (null === $client) {
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        return view("admin.clients.edit", compact("client"));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function update(int $id, Request $request)
+    {
+        $client = Client::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("edit clients")) {
+            Log::info("Unauthorized ClientController::update attempt");
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        if (null === $client) {
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        $client->updated_at = now();
+        $client->save();
+        return redirect()->route("adminClients")
+            ->with(["success" => "Client successfully updated."]);
+    }
 }

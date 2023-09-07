@@ -64,7 +64,7 @@
                   </div>
                   <div class="float-end">
                     @can("edit clients")
-                    <a href="javascript:;" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ route("editClient", $client->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     @endcan
                     @can("delete clients")
                     <a href="javascript:;" class="btn btn-danger btn-sm">Delete</a>

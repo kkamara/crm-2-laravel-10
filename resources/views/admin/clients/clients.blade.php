@@ -24,6 +24,7 @@
                     </h3>
                 </div>
                 <div class="card-body">
+                  @include("admin.layouts.partials.flashes")
                   <form action="{{ route('clientsSearch') }}" method='GET'>
                     @csrf
                     <div class="form-group">
@@ -65,7 +66,7 @@
                     <a href="{{ route("client", $client->id) }}" class="btn btn-primary btn-sm">View</a>
                     @endcan
                     @can("edit clients")
-                    <a href="javascript:;" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ route("editClient", $client->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     @endcan
                     @can("delete clients")
                     <a href="javascript:;" class="btn btn-danger btn-sm">Delete</a>

@@ -61,3 +61,17 @@ Route::get(
         'view'
     ]
 )->name('client');
+Route::get(
+    'admin/clients/{id}/edit',
+    [
+        ClientController::class,
+        'edit'
+    ]
+)->name('editClient');
+Route::post(
+    'admin/clients/{id}/edit',
+    [
+        ClientController::class,
+        'update'
+    ]
+)->name('updateClient');
