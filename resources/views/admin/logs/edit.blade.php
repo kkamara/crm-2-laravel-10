@@ -41,6 +41,13 @@
                         </h3>
                     </div>
                     <div class="card-body">
+                        @if(isset($errors) && $errors->count())
+                            @foreach($errors->all() as $error)
+                            <div id="validation">
+                                {{ $error }}
+                            </div>
+                            @endforeach
+                        @endif
                     <div>
                         <label for="name"><strong>Log Name:</strong></label>
                         <input 

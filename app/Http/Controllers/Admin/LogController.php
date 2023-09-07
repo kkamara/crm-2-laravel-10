@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log as LaravelLog;
+use Illuminate\Support\Facades\Validator;
 
 class LogController extends Controller
 {
@@ -88,7 +89,13 @@ class LogController extends Controller
         if (null === $log) {
             return abort(Response::HTTP_NOT_FOUND);
         }
-
+        $validator = Validator::make($request->all(), [
+            "name" => "required|min:3|max:255"
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator);
+        }
         $log->updated_at = now();
         $log->save();
         return redirect()->route("adminLogs")
