@@ -62,13 +62,13 @@
                       <span>| {{ $client->updated_at }}</span>
                     </button>
                     @can("view clients")
-                    <button class="btn btn-primary btn-sm">View</button>
+                    <a href="javascript:;" class="btn btn-primary btn-sm">View</a>
                     @endcan
                     @can("edit clients")
-                    <button class="btn btn-warning btn-sm">Edit</button>
+                    <a href="javascript:;" class="btn btn-warning btn-sm">Edit</a>
                     @endcan
                     @can("delete clients")
-                    <button class="btn btn-danger btn-sm">Delete</button>
+                    <a href="javascript:;" class="btn btn-danger btn-sm">Delete</a>
                     @endcan
                     <hr />
                     <br />
