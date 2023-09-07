@@ -53,6 +53,15 @@
                   <br />
                 </div>
                 <div class="card-footer">
+                  <div class="float-start">
+                    <a 
+                      href="javascript:;" 
+                      class="btn btn-default btn-sm"
+                      onClick="window.history.back();"
+                    >
+                      Back
+                    </a>
+                  </div>
                   <div class="float-end">
                     @can("edit clients")
                     <a href="javascript:;" class="btn btn-warning btn-sm">Edit</a>
