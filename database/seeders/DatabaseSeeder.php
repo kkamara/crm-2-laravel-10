@@ -8,6 +8,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Admin\Client;
+use App\Models\Admin\Log;
 
 class DatabaseSeeder extends Seeder
 {
@@ -46,5 +47,7 @@ class DatabaseSeeder extends Seeder
         $user[0]->assignRole('all access');
 
         Client::factory()->count(30)->create();
+
+        Log::factory()->count(30)->create();
     }
 }

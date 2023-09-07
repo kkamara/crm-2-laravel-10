@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\Client;
+use App\Models\Admin\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log as LaravelLog;
 
-class ClientController extends Controller
+class LogController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
@@ -19,8 +19,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate(10);
-        return view('admin/clients/clients', compact('clients'));
+        $logs = Log::paginate(10);
+        return view('admin.logs.logs', compact('logs'));
     }
 
     /**
@@ -29,21 +29,21 @@ class ClientController extends Controller
      */
     public function search(Request $request)
     {
-        if (!auth()->user()->hasPermissionTo('view clients')) {
+        if (!auth()->user()->hasPermissionTo('view logs')) {
             return abort(Response::HTTP_UNAUTHORIZED, 'Unauthorized.');
         }
         
-        $clients = Client::paginate(10);
+        $logs = Log::paginate(10);
         $query = $request->get('query');
         if (null !== $query) {
             $query = htmlspecialchars($query);
-            $clients = Client::where('name', 'like', "%$query%")
+            $logs = Log::where('name', 'like', "%$query%")
                 ->orWhere('created_at', 'like', "%$query%")
                 ->orWhere('updated_at', 'like', "%$query%")
                 ->paginate(10);
         }
         $request->flash();
-        return view('admin/clients/clients', compact('clients'));
+        return view('admin/logs/logs', compact('logs'));
     }
 
     /**
@@ -51,12 +51,12 @@ class ClientController extends Controller
      */
     public function view(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
-        if (!auth()->user()->hasPermissionTo("view clients")) {
-            Log::info("Unauthorized ClientController::view attempt");
+        $log = Log::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("view logs")) {
+            LaravelLog::info("Unauthorized LogController::view attempt");
             return abort(Response::HTTP_NOT_FOUND);
         }
-        return view("admin.clients.view", compact("client"));
+        return view("admin.logs.view", compact("log"));
     }
 
     /**
@@ -64,15 +64,15 @@ class ClientController extends Controller
      */
     public function edit(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
-        if (!auth()->user()->hasPermissionTo("edit clients")) {
-            Log::info("Unauthorized ClientController::edit attempt");
+        $log = Log::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("edit logs")) {
+            LaravelLog::info("Unauthorized LogController::edit attempt");
             return abort(Response::HTTP_NOT_FOUND);
         }
-        if (null === $client) {
+        if (null === $log) {
             return abort(Response::HTTP_NOT_FOUND);
         }
-        return view("admin.clients.edit", compact("client"));
+        return view("admin.logs.edit", compact("log"));
     }
 
     /**
@@ -80,18 +80,19 @@ class ClientController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
-        if (!auth()->user()->hasPermissionTo("edit clients")) {
-            Log::info("Unauthorized ClientController::update attempt");
+        $log = Log::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("edit logs")) {
+            LaravelLog::info("Unauthorized LogController::update attempt");
             return abort(Response::HTTP_NOT_FOUND);
         }
-        if (null === $client) {
+        if (null === $log) {
             return abort(Response::HTTP_NOT_FOUND);
         }
-        $client->updated_at = now();
-        $client->save();
-        return redirect()->route("adminClients")
-            ->with(["success" => "Client successfully updated."]);
+
+        $log->updated_at = now();
+        $log->save();
+        return redirect()->route("adminLogs")
+            ->with(["success" => "Log successfully updated."]);
     }
 
     /**
@@ -99,15 +100,15 @@ class ClientController extends Controller
      */
     public function delete(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
-        if (!auth()->user()->hasPermissionTo("delete clients")) {
-            Log::info("Unauthorized ClientController::delete attempt");
+        $log = Log::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("delete logs")) {
+            LaravelLog::info("Unauthorized LogController::delete attempt");
             return abort(Response::HTTP_NOT_FOUND);
         }
-        if (null === $client) {
+        if (null === $log) {
             return abort(Response::HTTP_NOT_FOUND);
         }
-        return view("admin.clients.delete", compact("client"));
+        return view("admin.logs.delete", compact("log"));
     }
 
     /**
@@ -115,19 +116,19 @@ class ClientController extends Controller
      */
     public function destroy(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
-        if (!auth()->user()->hasPermissionTo("delete clients")) {
-            Log::info("Unauthorized ClientController::destroy attempt");
+        $log = Log::where("id", $id)->first();
+        if (!auth()->user()->hasPermissionTo("delete logs")) {
+            LaravelLog::info("Unauthorized LogController::destroy attempt");
             return abort(Response::HTTP_NOT_FOUND);
         }
-        if (null === $client) {
+        if (null === $log) {
             return abort(Response::HTTP_NOT_FOUND);
         }
         if ($request->get("delete") === "yes") {
-            $client->delete();
-            return redirect()->route("adminClients")
-                ->with(["success" => "Client {$client->name} successfully deleted."]);
+            $log->delete();
+            return redirect()->route("adminLogs")
+                ->with(["success" => "Log {$log->name} successfully deleted."]);
         }
-        return redirect()->route("adminClients");
+        return redirect()->route("adminLogs");
     }
 }

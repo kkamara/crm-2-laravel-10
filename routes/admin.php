@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\LogController;
 
 Route::get('/admin',function() {
     return ['message'=>'success'];
@@ -89,3 +90,52 @@ Route::delete(
         'destroy'
     ]
 )->name('destroyClient');
+Route::get(
+    'admin/logs',
+    [
+        LogController::class,
+        'index'
+    ]
+)->name('adminLogs');
+Route::get(
+    'admin/logs/search',
+    [
+        LogController::class,
+        'search'
+    ]
+)->name('logsSearch');
+Route::get(
+    'admin/logs/{id}',
+    [
+        LogController::class,
+        'view'
+    ]
+)->name('log');
+Route::get(
+    'admin/logs/{id}/edit',
+    [
+        LogController::class,
+        'edit'
+    ]
+)->name('editLog');
+Route::post(
+    'admin/logs/{id}/edit',
+    [
+        LogController::class,
+        'update'
+    ]
+)->name('updateLog');
+Route::get(
+    'admin/logs/{id}/delete',
+    [
+        LogController::class,
+        'delete'
+    ]
+)->name('deleteLog');
+Route::delete(
+    'admin/logs/{id}/delete',
+    [
+        LogController::class,
+        'destroy'
+    ]
+)->name('destroyLog');

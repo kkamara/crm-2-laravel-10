@@ -7,22 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Client extends Model
+class Log extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'users_id',
-        'name',
-        'deleted_at',
+        "users_id",
+        "clients_id",
+        "updated_by",
+        "name",
         "created_at",
-        "updated_at"
+        "updated_at",
+        "deleted_at"
     ];
+
+    public function client() {
+        return $this->belongsTo(
+            Client::class,
+            "clients_id"
+        );
+    }
 
     public function user() {
         return $this->belongsTo(
             User::class,
-            'users_id'
+            "users_id"
         );
     }
 }

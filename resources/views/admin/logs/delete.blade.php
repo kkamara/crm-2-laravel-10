@@ -6,14 +6,15 @@
           <div class="row">
             <div class="col-lg-12 d-flex align-items-strech">
                 <form 
-                    action="{{ route("updateClient", $client->id) }}"
+                    action="{{ route("destroyLog", $log->id) }}"
                     method="POST"
                     class="card w-100"
                 >
                     @csrf
+                    @method("DELETE")
                     <div class="card-header">
                         <h3>
-                            Client
+                            Log
                             <div class="float-end">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -23,17 +24,17 @@
                                             </a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="{{ route('adminClients') }}">
-                                                Clients
+                                            <a href="{{ route('adminLogs') }}">
+                                                Logs
                                             </a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="{{ route('client', $client->id) }}">
-                                                {{ $client->name }}
+                                            <a href="{{ route('log', $log->id) }}">
+                                                {{ $log->name }}
                                             </a>
                                         </li>
                                         <li class="breadcrumb-item active" aria-current="page">
-                                            Edit
+                                            Delete
                                         </li>
                                     </ol>
                                 </nav>
@@ -41,46 +42,18 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                    <div>
-                        <label for="name"><strong>Client Name:</strong></label>
-                        <input 
-                            type="text" 
-                            disabled="true" 
-                            name="name"
-                            value="{{ $client->name }}"
-                        />
-                    </div>
-                    <br />
-                    <div>
-                        <label for="created_at"><strong>Created At:</strong></label>
-                        <input 
-                            type="text" 
-                            disabled="true" 
-                            name="created_at"
-                            value="{{ $client->created_at }}"
-                        />
-                    </div>
-                    <br />
-                    <div>
-                        <label for="updated_at"><strong>Updated At:</strong></label>
-                        <input 
-                            type="text" 
-                            disabled="true" 
-                            name="created_at"
-                            value="{{ $client->updated_at }}"
-                        />
-                    </div>
-                    <br />
-                    <div>
-                        <label for="user_created"><strong>User created:</strong></label>
-                        <input 
-                            type="text" 
-                            disabled="true" 
-                            name="user_created"
-                            value="{{ $client->user->fullName }}"
-                        />
-                    </div>
-                    <br />
+                        <div class="form-group">
+                            <label for="name"><strong>Delete Log {{ $log->name }}:</strong></label>
+                            <select 
+                                class="form-control"
+                                type="text" 
+                                name="delete"
+                            >
+                                <option value="no" selected>No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <br />
                     </div>
                     <div class="card-footer">
                     <div class="float-start">
@@ -93,8 +66,9 @@
                         </a>
                     </div>
                     <div class="float-end">
-                        @can("edit clients")
+                        @can("edit logs")
                         <input 
+                            href="javascript:;" 
                             class="btn btn-success btn-sm"
                             type="submit"
                             value="Submit"

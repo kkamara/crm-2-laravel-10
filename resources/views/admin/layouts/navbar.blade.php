@@ -35,7 +35,7 @@
       <li class="sidebar-item">
         <a 
             class="" 
-            href="" 
+            href="{{ route("adminLogs") }}" 
             aria-expanded="false"
         >
           <span>
@@ -45,7 +45,7 @@
         </a>
       </li>
       @endcan
-      @can('view users')
+      {{-- @can('view users')
       <li class="sidebar-item">
         <a 
             class="" 
@@ -58,6 +58,6 @@
           <span class="hide-menu">View Users</span>
         </a>
       </li>
-      @endcan
+      @endcan --}}
     </ul>
   </nav>
