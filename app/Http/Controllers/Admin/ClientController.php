@@ -19,7 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate(10);
+        $clients = Client::orderBy("id", "desc")->paginate(10);
         return view('admin/clients/clients', compact('clients'));
     }
 
@@ -33,15 +33,16 @@ class ClientController extends Controller
             return abort(Response::HTTP_UNAUTHORIZED, 'Unauthorized.');
         }
         
-        $clients = Client::paginate(10);
+        $clients = Client::orderBy("id", "desc");
         $query = $request->get('query');
         if (null !== $query) {
             $query = htmlspecialchars($query);
             $clients = Client::where('name', 'like', "%$query%")
                 ->orWhere('created_at', 'like', "%$query%")
                 ->orWhere('updated_at', 'like', "%$query%")
-                ->paginate(10);
+                ->orderBy("id", "desc");
         }
+        $clients = $clients->paginate(10);
         $request->flash();
         return view('admin/clients/clients', compact('clients'));
     }

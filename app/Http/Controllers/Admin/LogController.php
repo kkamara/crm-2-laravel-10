@@ -20,7 +20,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        $logs = Log::paginate(10);
+        $logs = Log::orderBy("id", "desc")->paginate(10);
         return view('admin.logs.logs', compact('logs'));
     }
 
@@ -34,15 +34,16 @@ class LogController extends Controller
             return abort(Response::HTTP_UNAUTHORIZED, 'Unauthorized.');
         }
         
-        $logs = Log::paginate(10);
+        $logs = Log::orderBy("id", "desc");
         $query = $request->get('query');
         if (null !== $query) {
             $query = htmlspecialchars($query);
             $logs = Log::where('name', 'like', "%$query%")
                 ->orWhere('created_at', 'like', "%$query%")
                 ->orWhere('updated_at', 'like', "%$query%")
-                ->paginate(10);
+                ->orderBy("id", "desc");
         }
+        $logs = $logs->paginate(10);
         $request->flash();
         return view('admin/logs/logs', compact('logs'));
     }
