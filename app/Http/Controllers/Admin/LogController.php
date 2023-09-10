@@ -82,7 +82,8 @@ class LogController extends Controller
     public function update(int $id, Request $request)
     {
         $log = Log::where("id", $id)->first();
-        if (!auth()->user()->hasPermissionTo("edit logs")) {
+        $user = auth()->user();
+        if (!$user->hasPermissionTo("edit logs")) {
             LaravelLog::info("Unauthorized LogController::update attempt");
             return abort(Response::HTTP_NOT_FOUND);
         }
@@ -96,6 +97,8 @@ class LogController extends Controller
             return redirect()->back()
                 ->withErrors($validator);
         }
+        $log->name = htmlspecialchars($request->get("name"));
+        $log->updated_by = $user->id;
         $log->updated_at = now();
         $log->save();
         return redirect()->route("adminLogs")

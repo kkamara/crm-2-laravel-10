@@ -51,6 +51,11 @@
                     <p>{{ $log->user->fullName }}</p>
                   </div>
                   <br />
+                  <div>
+                    <p><strong>User updated by:</strong></p>
+                    <p>{{ $log->userUpdatedBy?->fullName ?: "None" }}</p>
+                  </div>
+                  <br />
                 </div>
                 <div class="card-footer">
                   <div class="float-start">

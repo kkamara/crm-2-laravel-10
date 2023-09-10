@@ -34,4 +34,11 @@ class Log extends Model
             "users_id"
         );
     }
+
+    public function userUpdatedBy() {
+        return $this->belongsTo(
+            User::class,
+            "updated_by"
+        );
+    }
 }
