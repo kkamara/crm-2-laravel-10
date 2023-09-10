@@ -49,6 +49,8 @@ class ClientController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function view(int $id, Request $request)
     {
@@ -62,6 +64,8 @@ class ClientController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function edit(int $id, Request $request)
     {
@@ -78,6 +82,8 @@ class ClientController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function update(int $id, Request $request)
     {
@@ -97,6 +103,8 @@ class ClientController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function delete(int $id, Request $request)
     {
@@ -113,6 +121,8 @@ class ClientController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function destroy(int $id, Request $request)
     {

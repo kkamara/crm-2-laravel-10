@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin\Log;
+use App\Models\Admin\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -50,6 +51,8 @@ class LogController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function view(int $id, Request $request)
     {
@@ -63,6 +66,8 @@ class LogController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function edit(int $id, Request $request)
     {
@@ -79,6 +84,8 @@ class LogController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function update(int $id, Request $request)
     {
@@ -96,7 +103,8 @@ class LogController extends Controller
         ]);
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator);
+                ->withErrors($validator)
+                ->withInput();
         }
         $log->name = htmlspecialchars($request->get("name"));
         $log->updated_by = $user->id;
@@ -108,6 +116,8 @@ class LogController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function delete(int $id, Request $request)
     {
@@ -124,6 +134,8 @@ class LogController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
      */
     public function destroy(int $id, Request $request)
     {
@@ -141,5 +153,41 @@ class LogController extends Controller
                 ->with(["success" => "Log {$log->name} successfully deleted."]);
         }
         return redirect()->route("adminLogs");
+    }
+
+    public function new() {
+        if (!auth()->user()->hasPermissionTo("create logs")) {
+            LaravelLog::info("Unauthorized LogController::new attempt");
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        $clients = Client::all();
+        return view("admin.logs.new", compact("clients"));
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     */
+    public function store(Request $request) {
+        $user = auth()->user();
+        if (!$user->hasPermissionTo("create logs")) {
+            LaravelLog::info("Unauthorized LogController::new attempt");
+            return abort(Response::HTTP_NOT_FOUND);
+        }
+        $validator = Validator::make($request->all(), [
+            "name" => "required|min:3|max:255",
+            "client" => "required|numeric|exists:clients,id",
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $log = new Log();
+        $log->users_id = $user->id;
+        $log->clients_id = $request->get("client");
+        $log->name = htmlspecialchars($request->get("name"));
+        $log->save();
+        return redirect()->route("adminLogs")
+            ->with(["success" => "Log {$log->name} successfully created."]);
     }
 }

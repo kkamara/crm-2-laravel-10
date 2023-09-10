@@ -51,6 +51,17 @@
                         placeholder='Search your logs data...'
                       />
                     </div>
+                    @can("create logs")
+                    <div class="float-end form-group">
+                      <br/>
+                      <a 
+                        href="{{ route("newLog") }}"
+                        class="btn btn-secondary form-control"
+                      >
+                        New
+                      </a>
+                    </div>
+                    @endcan
                     <br />
                     <input 
                       type="submit"

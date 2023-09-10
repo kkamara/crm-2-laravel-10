@@ -105,6 +105,20 @@ Route::get(
     ]
 )->name('logsSearch');
 Route::get(
+    'admin/logs/new',
+    [
+        LogController::class,
+        'new'
+    ]
+)->name('newLog');
+Route::post(
+    'admin/logs/new',
+    [
+        LogController::class,
+        'store'
+    ]
+)->name('storeLog');
+Route::get(
     'admin/logs/{id}',
     [
         LogController::class,
