@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 require_once __DIR__.'/admin.php';
 
-Route::get('/',function() {
+Route::get('/', function() {
     return redirect()->to('admin/dashboard', 301);
 })->name('home');

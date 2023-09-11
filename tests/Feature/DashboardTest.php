@@ -2,18 +2,32 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
 {
-    /**
-     * A basic test example.
-     */
-    public function test_redirect_admin_path(): void
-    {
-        $response = $this->get('/admin');
+    use RefreshDatabase;
 
-        $response->assertStatus(301);
+    protected User $user;
+
+    public function setUp(): void {
+        parent::setUp();
+
+        $this->user = $this->app->make("App\Models\User");
+    }
+
+    public function test_index(): void
+    {
+        $this->seed();
+        $user = $this->user->where("email", "admin@example.com")
+            ->first();
+        $response = $this->actingAs($user)
+            ->get('/admin/dashboard');
+
+        $response->assertStatus(200)
+            ->assertSee("Dashboard")
+            ->assertSee("Home");
     }
 }
