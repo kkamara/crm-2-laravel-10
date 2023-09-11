@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class LogController extends Controller
 {
-    public function __construct() {
+    public function __construct(protected Log $log, protected Client $client) {
         $this->middleware('auth');
     }
 
@@ -21,7 +21,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        $logs = Log::orderBy("id", "desc")->paginate(10);
+        $logs = $this->log->orderBy("id", "desc")->paginate(10);
         return view('admin.logs.logs', compact('logs'));
     }
 
@@ -35,11 +35,11 @@ class LogController extends Controller
             return abort(Response::HTTP_UNAUTHORIZED, 'Unauthorized.');
         }
         
-        $logs = Log::orderBy("id", "desc");
+        $logs = $this->log->orderBy("id", "desc");
         $query = $request->get('query');
         if (null !== $query) {
             $query = htmlspecialchars($query);
-            $logs = Log::where('name', 'like', "%$query%")
+            $logs = $this->log->where('name', 'like', "%$query%")
                 ->orWhere('created_at', 'like', "%$query%")
                 ->orWhere('updated_at', 'like', "%$query%")
                 ->orderBy("id", "desc");
@@ -56,7 +56,7 @@ class LogController extends Controller
      */
     public function view(int $id, Request $request)
     {
-        $log = Log::where("id", $id)->first();
+        $log = $this->log->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("view logs")) {
             LaravelLog::info("Unauthorized LogController::view attempt");
             return abort(Response::HTTP_NOT_FOUND);
@@ -71,7 +71,7 @@ class LogController extends Controller
      */
     public function edit(int $id, Request $request)
     {
-        $log = Log::where("id", $id)->first();
+        $log = $this->log->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("edit logs")) {
             LaravelLog::info("Unauthorized LogController::edit attempt");
             return abort(Response::HTTP_NOT_FOUND);
@@ -89,7 +89,7 @@ class LogController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        $log = Log::where("id", $id)->first();
+        $log = $this->log->where("id", $id)->first();
         $user = auth()->user();
         if (!$user->hasPermissionTo("edit logs")) {
             LaravelLog::info("Unauthorized LogController::update attempt");
@@ -121,7 +121,7 @@ class LogController extends Controller
      */
     public function delete(int $id, Request $request)
     {
-        $log = Log::where("id", $id)->first();
+        $log = $this->log->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("delete logs")) {
             LaravelLog::info("Unauthorized LogController::delete attempt");
             return abort(Response::HTTP_NOT_FOUND);
@@ -139,7 +139,7 @@ class LogController extends Controller
      */
     public function destroy(int $id, Request $request)
     {
-        $log = Log::where("id", $id)->first();
+        $log = $this->log->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("delete logs")) {
             LaravelLog::info("Unauthorized LogController::destroy attempt");
             return abort(Response::HTTP_NOT_FOUND);
@@ -160,7 +160,7 @@ class LogController extends Controller
             LaravelLog::info("Unauthorized LogController::new attempt");
             return abort(Response::HTTP_NOT_FOUND);
         }
-        $clients = Client::all();
+        $clients = $this->client->all();
         return view("admin.logs.new", compact("clients"));
     }
 

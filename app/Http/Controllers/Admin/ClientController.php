@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class ClientController extends Controller
 {
-    public function __construct() {
+    public function __construct(protected Client $client) {
         $this->middleware('auth');
     }
 
@@ -19,7 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::orderBy("id", "desc")->paginate(10);
+        $clients = $this->client->orderBy("id", "desc")->paginate(10);
         return view('admin/clients/clients', compact('clients'));
     }
 
@@ -33,11 +33,11 @@ class ClientController extends Controller
             return abort(Response::HTTP_UNAUTHORIZED, 'Unauthorized.');
         }
         
-        $clients = Client::orderBy("id", "desc");
+        $clients = $this->client->orderBy("id", "desc");
         $query = $request->get('query');
         if (null !== $query) {
             $query = htmlspecialchars($query);
-            $clients = Client::where('name', 'like', "%$query%")
+            $clients = $this->client->where('name', 'like', "%$query%")
                 ->orWhere('created_at', 'like', "%$query%")
                 ->orWhere('updated_at', 'like', "%$query%")
                 ->orderBy("id", "desc");
@@ -54,7 +54,7 @@ class ClientController extends Controller
      */
     public function view(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
+        $client = $this->client->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("view clients")) {
             Log::info("Unauthorized ClientController::view attempt");
             return abort(Response::HTTP_NOT_FOUND);
@@ -69,7 +69,7 @@ class ClientController extends Controller
      */
     public function edit(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
+        $client = $this->client->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("edit clients")) {
             Log::info("Unauthorized ClientController::edit attempt");
             return abort(Response::HTTP_NOT_FOUND);
@@ -87,7 +87,7 @@ class ClientController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
+        $client = $this->client->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("edit clients")) {
             Log::info("Unauthorized ClientController::update attempt");
             return abort(Response::HTTP_NOT_FOUND);
@@ -108,7 +108,7 @@ class ClientController extends Controller
      */
     public function delete(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
+        $client = $this->client->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("delete clients")) {
             Log::info("Unauthorized ClientController::delete attempt");
             return abort(Response::HTTP_NOT_FOUND);
@@ -126,7 +126,7 @@ class ClientController extends Controller
      */
     public function destroy(int $id, Request $request)
     {
-        $client = Client::where("id", $id)->first();
+        $client = $this->client->where("id", $id)->first();
         if (!auth()->user()->hasPermissionTo("delete clients")) {
             Log::info("Unauthorized ClientController::destroy attempt");
             return abort(Response::HTTP_NOT_FOUND);
