@@ -51,7 +51,7 @@ class LoginController extends Controller
                 ->withInput()
                 ->withErrors(['username' => 'Invalid email & password combination']);
         }
-        return redirect()->route('adminHome');
+        return redirect()->to('admin/dashboard', 301);
     }
 
     /**
@@ -59,6 +59,6 @@ class LoginController extends Controller
      */
     public function logout(Request $request) {
         Auth::logout();
-        return redirect()->route('adminHome');
+        return redirect()->to('admin/dashboard', 301);
     }
 }

@@ -97,7 +97,7 @@ class ClientController extends Controller
         }
         $client->updated_at = now();
         $client->save();
-        return redirect()->route("adminClients")
+        return redirect()->to("admin/clients", 301)
             ->with(["success" => "Client successfully updated."]);
     }
 
@@ -136,9 +136,9 @@ class ClientController extends Controller
         }
         if ($request->get("delete") === "yes") {
             $client->delete();
-            return redirect()->route("adminClients")
+            return redirect()->to("admin/clients", 301)
                 ->with(["success" => "Client {$client->name} successfully deleted."]);
         }
-        return redirect()->route("adminClients");
+        return redirect()->to("admin/clients", 301);
     }
 }

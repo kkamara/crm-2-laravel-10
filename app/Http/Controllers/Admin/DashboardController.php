@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function index(Request $request) {
         if (!Auth::check()) {
-            return redirect()->route('adminLogin');
+            return redirect()->to('admin/login', 301);
         }
         return view('admin/dashboard');
     }
@@ -22,6 +22,6 @@ class DashboardController extends Controller
      * @param \Illuminate\Http\Request $request
      */
     public function redirectAdminPath(Request $request) {
-        return redirect()->route('adminLogin');
+        return redirect()->to('admin/login', 301);
     }
 }

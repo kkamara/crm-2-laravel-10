@@ -110,7 +110,7 @@ class LogController extends Controller
         $log->updated_by = $user->id;
         $log->updated_at = now();
         $log->save();
-        return redirect()->route("adminLogs")
+        return redirect()->to("admin/logs", 301)
             ->with(["success" => "Log successfully updated."]);
     }
 
@@ -149,10 +149,10 @@ class LogController extends Controller
         }
         if ($request->get("delete") === "yes") {
             $log->delete();
-            return redirect()->route("adminLogs")
+            return redirect()->to("admin/logs", 301)
                 ->with(["success" => "Log {$log->name} successfully deleted."]);
         }
-        return redirect()->route("adminLogs");
+        return redirect()->to("admin/logs", 301);
     }
 
     public function new() {
@@ -187,7 +187,7 @@ class LogController extends Controller
         $log->clients_id = $request->get("client");
         $log->name = htmlspecialchars($request->get("name"));
         $log->save();
-        return redirect()->route("adminLogs")
+        return redirect()->to("admin/logs", 301)
             ->with(["success" => "Log {$log->name} successfully created."]);
     }
 }
