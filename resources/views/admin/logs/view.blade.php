@@ -53,7 +53,7 @@
                   <br />
                   <div>
                     <p><strong>User updated by:</strong></p>
-                    <p>{{ $log->userUpdatedBy?->fullName ?: "None" }}</p>
+                    <p>{{ $log->userUpdatedBy->fullName ?? "None" }}</p>
                   </div>
                   <br />
                 </div>

@@ -128,7 +128,7 @@
                     <p>User created: {{ $log->user->fullName }}</p>
                     <p>Created At: {{ $log->user->created_at }}</p>
                     <p>Updated At: {{ $log->user->updated_at }}</p>
-                    <p>User updated by: {{ $log->userUpdatedBy?->fullName ?: "None" }}</p>
+                    <p>User updated by: {{ $log->userUpdatedBy->fullName ?? "None" }}</p>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
